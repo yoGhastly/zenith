@@ -7,7 +7,7 @@ export function Navbar() {
     <nav
       className={cn(
         "w-full h-full sticky top-0 z-50",
-        "bg-current",
+        "bg-black",
       )}
       style={{
         borderBottom: "0.3px solid rgba(161, 161, 161, 0.3)",
