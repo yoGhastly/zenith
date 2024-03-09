@@ -1,0 +1,17 @@
+.text-transition {
+  animation: Color 10s infinite;
+}
+
+@keyframes Color {
+  0% {
+    color: #fff;
+  }
+
+  33.33% {
+    color: #f31260; /* Second color */
+  }
+
+  100% {
+    color: #f5a524; /* Third color */
+  }
+}

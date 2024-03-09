@@ -3,11 +3,13 @@ import React from "react";
 
 interface ButtonProps {
   className?: string;
+  secondary?: boolean;
   style?: React.CSSProperties;
 }
 
 export function Button({
   className,
+  secondary,
   style,
   children,
 }: React.PropsWithChildren<ButtonProps>) {
@@ -15,8 +17,12 @@ export function Button({
     <button
       className={cn(
         className,
-        "bg-black drop-shadow-lg border border-gray-base",
-        "min-w-fit dark:bg-white font-semibold py-2 px-3.5 md:py-3 md:px-5 rounded-full",
+        "bg-white drop-shadow-lg border border-gray-base",
+        "min-w-fit font-semibold py-2 px-3.5 md:py-3 md:px-5 rounded-full",
+        {
+          "bg-black text-white hover:bg-white hover:text-black transition delay-100":
+            secondary,
+        },
       )}
       style={style}
     >

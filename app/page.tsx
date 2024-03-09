@@ -1,17 +1,17 @@
+import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/layout/header";
 import { Button } from "@/components/reusable/button";
 import { CodeLetter } from "@/components/reusable/code-letter";
+import { PricingContent } from "@/components/reusable/pricing/content";
 import { Grid } from "@/components/services/layout";
-import { services } from "@/constants";
+import { TeamBasedSection } from "@/components/team-based-section";
+import { benefits, planList, services } from "@/constants";
 import { cn } from "@/utils/cn";
 import {
-  BeakerIcon,
   RocketLaunchIcon,
   WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
-
-const gridRowServices = [services[0], services[2]];
 
 export default function Home() {
   return (
@@ -38,8 +38,8 @@ export default function Home() {
                   </Button.Text>
                 </Button>
 
-                <Button style={{ background: "black" }}>
-                  <Button.Text className="font-semibold text-white">
+                <Button secondary>
+                  <Button.Text className="font-semibold">
                     Schedule a demo
                   </Button.Text>
                 </Button>
@@ -51,6 +51,8 @@ export default function Home() {
               src="/hero-img.svg"
               alt="Zenith"
               className="object-cover w-full"
+              priority
+              sizes="(min-width: 768px) 66vw, 100vw"
               fill
             />
           </figure>
@@ -118,51 +120,75 @@ export default function Home() {
         ))}
       </Grid>
 
-      <section
-        className={cn(
-          "mx-auto max-w-[65.5rem] w-full h-full md:h-[70vh] mt-7 flex md:flex-row flex-col",
-        )}
-        style={{
-          border: "0.3px solid rgba(161, 161, 161, 0.3)",
-        }}
-      >
-        <article
-          className={cn(
-            "flex flex-col justify-between md:justify-center items-center mx-auto w-full p-5",
-            "backdrop-blur-[2px] bg-gradient-to-bl from-[#EF3E31] from-0% to-black-secondary to-20%",
-          )}
-          style={{
-            borderRight: "0.3px solid rgba(161, 161, 161, 0.3)",
-          }}
-        >
-          <div className="flex flex-col gap-5">
-            <div className="flex items-center gap-1 md:mt-24">
-              <BeakerIcon className="h-4 text-gray-base" />
-              <p className="text-gray-base">Team-based Recommendations</p>
+      <TeamBasedSection />
+
+      <Hero className="mt-7 md:max-w-[65.5rem] md:h-full w-full">
+        <Hero.Content>
+          <div className="flex flex-col md:flex-row h-full md:h-96 bg-black items-center md:justify-center md:my-auto md:mx-10 z-20 bg-clip-content p-5">
+            <div className="flex flex-col md:flex-row gap-8 md:items-center justify-between basis-auto mt-12 md:px-3">
+              <h2 className="font-semibold text-2xl md:text-4xl w-full md:max-w-lg leading-normal">
+                Empowering teams of all sizes with intelligent tool
+                recommendations.
+              </h2>
             </div>
-            <p className="md:w-[25rem]">
-              Allows users to describe their team composition, including the
-              number of frontend developers, backend developers, designers,
-              project managers, and other team members.
-            </p>
-            <figure className="aspect-square w-full relative">
-              <Image
-                src="/illustrations.svg"
-                fill
-                alt="Illustration"
-                className="object-contain"
-              />
-            </figure>
+
+            <div className="flex flex-col gap-5 justify-center md:basis-2/5 my-auto mt-5 md:mt-24">
+              <p className="text-gray-base">
+                Whether you're an individual developer looking to streamline
+                your workflow, a small team seeking to optimize collaboration,
+                or an enterprise in need of tailored solutions, Zenith provides
+                personalized guidance to help you choose the right tools for
+                your projects.
+              </p>
+              <Button secondary className="w-52">
+                <Button.Text className="font-semibold">
+                  Schedule a demo
+                </Button.Text>
+              </Button>
+            </div>
           </div>
-        </article>
-        <figure className="md:relative aspect-video hidden w-full">
-          <Image
-            src="/bg-teams.svg"
-            alt="Team Recommendation"
-            fill
-            className="object-cover"
-          />
-        </figure>
+        </Hero.Content>
+
+        <div
+          className={cn(
+            "mx-auto my-auto mt-0 w-full h-full md:h-1/2",
+            "grid grid-cols-2 md:grid-cols-4 bg-black-secondary z-[30]",
+          )}
+        >
+          {benefits.map((b) => (
+            <div
+              className="w-full h-full flex justify-center items-center mx-auto p-3"
+              key={b.label}
+              style={{
+                border: "0.3px solid rgba(161, 161, 161, 0.3)",
+              }}
+            >
+              <p className="font-bold w-52 mx-auto md:text-xl">
+                {b.label}
+                <span className="font-normal text-gray-base">
+                  {" "}
+                  {b.description}
+                </span>
+              </p>
+            </div>
+          ))}
+        </div>
+      </Hero>
+
+      <section className="w-full mx-auto flex flex-col gap-10 justify-center items-center max-w-7xl mt-24">
+        <h3 className="text-3xl md:text-4xl font-bold text-wrap max-w-[25rem] text-center">
+          Find a plan to power your workflow
+        </h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {planList.map((p, idx) => (
+            <PricingContent
+              plan={p}
+              key={`${p.label}-${idx}`}
+              isRecommended={p.label === "Starter"}
+            />
+          ))}
+        </div>
       </section>
     </main>
   );
