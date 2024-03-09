@@ -30,9 +30,9 @@ Hero.Content = function ({ children }: { children: ReactNode }) {
   return (
     <div
       className={cn(
-        "h-[70vh] md:h-[75vh] my-auto w-full dark:bg-black bg-white",
+        "h-[70vh] md:h-[75vh] my-auto w-full bg-black",
         "bg-clip-content",
-        "dark:bg-grid-small-white/[0.1] bg-grid-small-black/[0.1] md:dark:bg-grid-gray-base/[0.1] md:bg-grid-black/[0.2]",
+        "bg-grid-small-white/[0.1] md:bg-grid-black/[0.2]",
         "relative flex flex-col items-center justify-between",
       )}
       style={{
